@@ -1,0 +1,73 @@
+1. For using git ssh: go to home folder
+In windows, one can first install Git Bash, open git Bash terminal and type "cd"
+In unix, open a terminal, type cd
+
+2. In the home directory, change to .ssh folder
+If this folder doesn't exist, create it using "mkdir .ssh"
+
+3. Change to .ssh folder. Inside this folder, type "ssh-keygen" to generate ssh keys
+
+4. This command will ask: Enter file in which to save the key (/Users/thaitrinh/.ssh/id_rsa):
+Just enter the suggested file path inside the brackets /Users/thaitrinh/.ssh/id_rsa and hit enter
+Then enter twice the passphrase for using ssh keys. Since now, every time you pull, push, ...
+you only need this passphrase. There is an advanced step to get rid of entering this passphrase
+everytime. You can easily google for it. But if your computer is not so safe, don't do it.
+And for beginning, don't do too much stuffs. It can confuse you and make the impression that
+git is too complicated.
+
+5. Open a web browser, go to your github account online. Open profile -> setting -> ssh keys.
+Open the text file in your local computer: .ssh/id_rsa.pub, copy the public key and paste it
+into the filed for public key in the online github account. Close it
+
+6. Config your local git account. In the terminal type:
+    git config --global user.name "Thai Trinh"
+    git config --global user.email "trinhquangthai@gmail.com"
+
+7. To push an existing local repository: go to github account online -> repository -> new
+   This will create an empty remote repository.
+   Note: during that, don't add read_me file because you want to push an existing repo
+
+
+8. If everything is okay, you can push your local repo. Standing inside the local repo,
+   type these commands step by step:
+
+   git init (if the local dir is not yet git repo)
+   git add . (to add all changes)
+   git commit -m "Blah" (to commit changes)
+
+   NOW: you need to add the remote origin, so that git knows where you want to push your code.
+   You have 2 choices:
+   git add remote origin https://github.com/thaitrinh/image_recognition.git
+   git add remote origin git@github.com/thaitrinh/image_recognition.git
+
+   Since we want to use ssh, DON'T do the first choice, DO the second choice!
+   If you do the first choice, git will ask you for username and github account password.
+   If you do the second choice, git will only ask you for the passphrase that you have created
+   in step 4.
+
+   If you by mistake did the first choice, you can reset the url using this:
+   git remote set-url origin git@github.com:thaitrinh/image_recognition.git
+
+   After that, you can type "git remote -v" to veryfy the reset url
+
+   git push -u origin master
+
+   This means git will push the master branch (the default local branch) into
+   the remote origin (online). The -u option does the following: For every branch
+   that is up to date or successfully pushed, add upstream (tracking) reference,
+   used by argument-less git-pull and other commands.
+
+   So, after pushing your local branch with -u option, this local branch will be
+   automatically linked with remote branch, and you can use git pull without any arguments.
+
+9. Note about git pull: The git pull command first runs git fetch which downloads content
+   from the specified remote repository. Then a git merge is executed to merge
+   the remote content refs and heads into a new local merge commit.
+   https://www.atlassian.com/git/tutorials/syncing/git-pull
+
+   A --rebase option can be passed to git pull to use a rebase merging strategy
+   instead of a merge commit.
+   https://www.atlassian.com/git/tutorials/syncing/git-pull
+
+
+
