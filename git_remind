@@ -69,5 +69,19 @@ into the filed for public key in the online github account. Close it
    instead of a merge commit.
    https://www.atlassian.com/git/tutorials/syncing/git-pull
 
+10. To remove .idea folder if you already push it:
+    conda install git #get newest version of git
+    git pull
+    git rm -rf --cached .DS_Store
+    git rm -rf --cached .idea
+
+    Add .gitignore file with content as follows:
+    .DS_Store
+    .idea
+    **/.idea/workspace.xml
+
+    git add .gitignore
+    git commit -m "add .gitignore file"
+    git push -u 
 
 
