@@ -82,6 +82,6 @@ into the filed for public key in the online github account. Close it
 
     git add .gitignore
     git commit -m "add .gitignore file"
-    git push -u 
+    git push -u
 
 
